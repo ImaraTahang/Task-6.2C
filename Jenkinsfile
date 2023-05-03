@@ -21,7 +21,7 @@ pipeline{
                     mail to: "Imaratahang@gmail.com",
                     subject: "Test Status Email", 
                     body: "Tests were successful",
-                    attachmentsPattern: "*.log",
+                    attachmentsPattern: "*.log"
                 }
             }
         }
@@ -44,7 +44,7 @@ pipeline{
                     mail to: "Imaratahang@gmail.com",
                     subject: "Security Scan Status Email", 
                     body: "Security scan was successful",
-                    attachmentsPattern: "*.log",
+                    attachmentsPattern: "*.log"
                 }
             }
         }
