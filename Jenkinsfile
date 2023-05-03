@@ -29,9 +29,8 @@ pipeline{
         }
         stage('Security Scan'){
             steps {
-                withEnv(['ZAP_PORT=8090']) {
-                    sh 'zap.sh -daemon -port ${ZAP_PORT} -config api.disablekey=true'
-                    sh 'mvn verify -Psecurity'
+                withSonarQubeEnv('SonarQube Server') {
+                    sh 'mvn sonar:sonar'
                 }
             }
             post {
