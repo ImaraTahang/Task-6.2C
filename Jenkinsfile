@@ -8,34 +8,63 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                echo "fetch the source code from ${DIRECTORY_PATH}"
-                echo "compile the code and generate any necessary artifacts"
+                sh 'mvn clean package'
             }
         }
-        stage('Test'){
+        stage('Tests'){
             steps{
-                echo "Unit tests"
-                echo "Integration tests"
+                echo "Running unit and integration tests"
+                sh 'mvn test'
+            }
+            post {
+                success {
+                    mail to: "Imaratahang@gmail.com",
+                    subject: "Test Status Email", 
+                    body: "Tests were successful",
+                    attachmentsPattern: "*.log",
+                }
             }
         }
-        stage('Code Quality Check'){
+        stage('Code Analysis'){
             steps{
-                echo "Check the quality of the code"
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
-        stage('Deploy'){
-            steps{
-                echo "deploy the application to ${TESTING_ENVIRONMENT}"
+        stage('Security Scan'){
+            steps {
+                withEnv(['ZAP_PORT=8090']) {
+                    sh 'zap.sh -daemon -port ${ZAP_PORT} -config api.disablekey=true'
+                    sh 'mvn verify -Psecurity'
+                }
+            }
+            post {
+                success {
+                    mail to: "Imaratahang@gmail.com",
+                    subject: "Security Scan Status Email", 
+                    body: "Security scan was successful",
+                    attachmentsPattern: "*.log",
+                }
             }
         }
-        stage('Approval'){
+        stage('Deploy to Staging'){
             steps{
-                sleep time: 10, unit: 'SECONDS'
+                sshagent(['my-ssh-key']) {
+                    sh 'ssh -o StrictHostKeyChecking=no user@staging-server "cd /path/to/app && ./deploy.sh"'
+                }
             }
         }
-        stage('Deploy to production'){
+        stage('Integration Tests on Staging'){
             steps{
-                echo "fetch the source code from ${DIRECTORY_PATH}"
+                sh 'mvn verify -Pintegration-tests-staging'
+            }
+        }
+        stage('Deploy to Production'){
+            steps{
+                sshagent(['my-ssh-key']) {
+                    sh 'ssh -o StrictHostKeyChecking=no user@production-server "cd /path/to/app && ./deploy.sh"'
+                }
             }
         }
     }
