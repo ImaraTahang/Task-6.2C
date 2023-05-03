@@ -1,10 +1,5 @@
 pipeline{
     agent any
-    environment{
-        DIRECTORY_PATH = "C:/Users/Imara/AppData/Local/Jenkins/.jenkins/jobs/Task 5.1P"
-        TESTING_ENVIRONMENT = "Jenkins"
-        PRODUCTION_ENVIRONMENT = "Imara"
-    }
     stages{
         stage('Build'){
             steps{
@@ -21,7 +16,7 @@ pipeline{
                     mail to: "Imaratahang@gmail.com",
                     subject: "Test Status Email", 
                     body: "Tests were successful",
-                    attachmentsPattern: "*.log"
+                    attachments: '*.log',
                 }
             }
         }
@@ -44,7 +39,7 @@ pipeline{
                     mail to: "Imaratahang@gmail.com",
                     subject: "Security Scan Status Email", 
                     body: "Security scan was successful",
-                    attachmentsPattern: "*.log"
+                    attachments: '*.log',
                 }
             }
         }
