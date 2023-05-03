@@ -37,8 +37,8 @@ pipeline{
             post {
                 success {
                     mail to: "Imaratahang@gmail.com",
-                    subject: "Security Scan Status Email", 
-                    body: "Security scan was successful",
+                    subject: "Test Status Email", 
+                    body: "Tests were successful",
                     attachmentsPattern: "*.log",
                 }
             }
