@@ -12,8 +12,8 @@ pipeline{
                 sh 'mvn test'
             }
             post {
-                success {
-                    mail to: "Imaratahang@gmail.com",
+                always {
+                    emailext to: "Imaratahang@gmail.com",
                     subject: "Test Status Email", 
                     body: "Tests were successful",
                     attachLog: true
@@ -35,10 +35,10 @@ pipeline{
                 }
             }
             post {
-                success {
-                    mail to: "Imaratahang@gmail.com",
-                    subject: "Test Status Email", 
-                    body: "Tests were successful",
+                always {
+                    emailext to: "Imaratahang@gmail.com",
+                    subject: "Security Scan Status Email", 
+                    body: "Security Scan was successful",
                     attachLog: true
                 }
             }
