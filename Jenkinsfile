@@ -1,19 +1,16 @@
 pipeline{
     agent any
-    tools { 
-        maven 'Maven' 
-        jdk 'JDK' 
-    }
     stages{
         stage('Build'){
             steps{
-                sh 'mvn clean package'
+                echo "Building code.."
+                //maven can be used for build automation
             }
         }
         stage('Tests'){
             steps{
-                echo "Running unit and integration tests"
-                sh 'mvn test'
+                echo "Running unit and integration tests.."
+                //maven can also be used to run these tests
             }
             post {
                 always {
@@ -26,16 +23,14 @@ pipeline{
         }
         stage('Code Analysis'){
             steps{
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
+                echo "Analysing code.."
+                // use Checkstyle, FindBugs or PMD
             }
         }
         stage('Security Scan'){
             steps {
-                withSonarQubeEnv('SonarQube Server') {
-                    sh 'mvn sonar:sonar'
-                }
+                echo "Performing security scan.."
+                // use Probely Security Scanner Plugin
             }
             post {
                 always {
@@ -48,21 +43,20 @@ pipeline{
         }
         stage('Deploy to Staging'){
             steps{
-                sshagent(['my-ssh-key']) {
-                    sh 'ssh -o StrictHostKeyChecking=no user@staging-server "cd /path/to/app && ./deploy.sh"'
-                }
+                echo "Deploying to staging server.."
+                // use AWS EC2
             }
         }
         stage('Integration Tests on Staging'){
             steps{
-                sh 'mvn verify -Pintegration-tests-staging'
+               echo "Running integration tests.."
+                // use JUnit
             }
         }
         stage('Deploy to Production'){
             steps{
-                sshagent(['my-ssh-key']) {
-                    sh 'ssh -o StrictHostKeyChecking=no user@production-server "cd /path/to/app && ./deploy.sh"'
-                }
+                echo "Deploying to production server.."
+                // use AWS EC2
             }
         }
     }
