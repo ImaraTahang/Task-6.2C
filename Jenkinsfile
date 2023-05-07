@@ -15,12 +15,11 @@ pipeline{
             post {
                 success {
                     script {
-                        def emailAddress = 'Imaratahang@gmail.com'
                         def Subject = "Test Status Email"
                         def Body = "Tests were successful"
                         printIn "email sent to: ${Email}"
                         emailext {
-                            to: emailAddress,
+                            to: 'Imaratahang@gmail.com',
                             subject: Subject, 
                             body: Body,
                             attachLog: true
