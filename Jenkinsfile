@@ -14,16 +14,20 @@ pipeline{
             }
             post {
                 success {
-                    emailext attachLog: true,
-                             subject: "Test Status Email",
-                             body: "Tests were successful",
-                             to: "Imaratahang@gmail.com"
+                    emailext {
+                        to: "Imaratahang@gmail.com",
+                        subject: "Test Status Email", 
+                        body: "Tests were successful",
+                        attachLog: true
+                    }
                 }
                 failure {
-                    emailext attachLog: true,
-                             subject: "Test Status Email",
-                             body: "Tests were failed",
-                             to: "Imaratahang@gmail.com"
+                    emailext {
+                        to: "Imaratahang@gmail.com",
+                        subject: "Test Status Email", 
+                        body: "Tests were failed",
+                        attachLog: true
+                    }
                 }
             }
         }
@@ -40,16 +44,20 @@ pipeline{
             }
             post {
                 success {
-                    emailext attachLog: true,
-                             subject: "Security Scan Status Email",
-                             body: "Security Scan was successful",
-                             to: "Imaratahang@gmail.com"
+                    emailext {
+                        to: "Imaratahang@gmail.com",
+                        subject: "Security Scan Status Email", 
+                        body: "Security Scan was successful",
+                        attachLog: true
+                    }
                 }
                 failure {
-                    emailext attachLog: true,
-                             subject: "Security Scan Status Email",
-                             body: "Security scan was failed",
-                             to: "Imaratahang@gmail.com"
+                    emailext { 
+                        to: "Imaratahang@gmail.com",
+                        subject: "Security Scan Status Email", 
+                        body: "Security scan was failed",
+                        attachLog: true
+                    }
                 }
             }
         }
