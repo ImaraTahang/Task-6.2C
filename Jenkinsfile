@@ -14,12 +14,12 @@ pipeline{
             }
             post {
                 success {
-                    to: 'Imaratahang@gmail.com',
+                    mail to: 'Imaratahang@gmail.com',
                     subject: 'Test Status Email', 
                     body: 'Tests were successful'
                 }
                 failure {
-                    to: 'Imaratahang@gmail.com',
+                    mail to: 'Imaratahang@gmail.com',
                     subject: 'Test Status Email', 
                     body: 'Tests were failed'
                 }            
@@ -38,12 +38,12 @@ pipeline{
             }
             post {
                 success {
-                    to: 'Imaratahang@gmail.com',
+                    mail to: 'Imaratahang@gmail.com',
                     subject: 'Security Scan Status Email', 
                     body: 'Security scan was successful'
                 }
                 failure {
-                    to: 'Imaratahang@gmail.com',
+                    mail to: 'Imaratahang@gmail.com',
                     subject: 'Security Scan Status Email', 
                     body: 'Security scan was failed'
                 }
