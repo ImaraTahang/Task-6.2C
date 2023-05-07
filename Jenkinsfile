@@ -18,6 +18,7 @@ pipeline{
                         def Email = 'Imaratahang@gmail.com'
                         def Subject = "Test Status Email"
                         def Body = "Tests were successful"
+                        printIn "email sent to: ${Email}"
                         emailext {
                             to: Email,
                             subject: Subject, 
@@ -31,6 +32,7 @@ pipeline{
                         def Email = 'Imaratahang@gmail.com'
                         def Subject = "Test Status Email"
                         def Body = "Tests were failed"
+                        printIn "email sent to: ${Email}"
                         emailext {
                             to: Email,
                             subject: Subject, 
