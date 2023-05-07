@@ -15,26 +15,26 @@ pipeline{
             post {
                 success {
                     script {
-                        def email = 'Imaratahang@gmail.com'
-                        def subject = "Test Status Email"
-                        def body = "Tests were successful"
+                        def Email = 'Imaratahang@gmail.com'
+                        def Subject = "Test Status Email"
+                        def Body = "Tests were successful"
                         emailext {
-                            to: email,
-                            subject: subject, 
-                            body: body,
+                            to: Email,
+                            subject: Subject, 
+                            body: Body,
                             attachLog: true
                         }
                     }
                 }
                 failure {
                     script {
-                        def email = 'Imaratahang@gmail.com'
-                        def subject = "Test Status Email"
-                        def body = "Tests were failed"
+                        def Email = 'Imaratahang@gmail.com'
+                        def Subject = "Test Status Email"
+                        def Body = "Tests were failed"
                         emailext {
-                            to: email,
-                            subject: subject, 
-                            body: body,
+                            to: Email,
+                            subject: Subject, 
+                            body: Body,
                             attachLog: true
                         }
                     }
