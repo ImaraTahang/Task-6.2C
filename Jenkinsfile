@@ -17,7 +17,7 @@ pipeline{
                     emailext to: "Imaratahang@gmail.com",
                     subject: "Test Status Email", 
                     body: "Tests were successful",
-                    attachLog: true
+                    //attachLog: true
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline{
                     emailext to: "Imaratahang@gmail.com",
                     subject: "Security Scan Status Email", 
                     body: "Security Scan was successful",
-                    attachLog: true
+                    //attachLog: true
                 }
             }
         }
