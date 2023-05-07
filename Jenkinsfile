@@ -14,7 +14,7 @@ pipeline{
             }
             post {
                 success {
-                    emailext to: "Imaratahang@gmail.com",
+                    mail to: "Imaratahang@gmail.com",
                     subject: "Test Status Email", 
                     body: "Tests were successful",
                     attachLog: true
@@ -34,7 +34,7 @@ pipeline{
             }
             post {
                 success {
-                    emailext to: "Imaratahang@gmail.com",
+                    mail to: "Imaratahang@gmail.com",
                     subject: "Security Scan Status Email", 
                     body: "Security Scan was successful",
                     attachLog: true
