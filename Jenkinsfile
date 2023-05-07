@@ -13,11 +13,11 @@ pipeline{
                 //maven can also be used to run these tests
             }
             post {
-                always {
+                success {
                     emailext to: "Imaratahang@gmail.com",
                     subject: "Test Status Email", 
-                    body: "Tests were successful"
-                    //attachLog: true
+                    body: "Tests were successful",
+                    attachLog: true
                 }
             }
         }
@@ -33,11 +33,11 @@ pipeline{
                 // use Probely Security Scanner Plugin
             }
             post {
-                always {
+                success {
                     emailext to: "Imaratahang@gmail.com",
                     subject: "Security Scan Status Email", 
-                    body: "Security Scan was successful"
-                    //attachLog: true
+                    body: "Security Scan was successful",
+                    attachLog: true
                 }
             }
         }
