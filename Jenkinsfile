@@ -14,10 +14,16 @@ pipeline{
             }
             post {
                 success {
-                    mail to: "Imaratahang@gmail.com",
-                    subject: "Test Status Email", 
-                    body: "Tests were successful",
-                    attachLog: true
+                    emailext attachLog: true,
+                             subject: "Test Status Email",
+                             body: "Tests were successful",
+                             to: "Imaratahang@gmail.com"
+                }
+                failure {
+                    emailext attachLog: true,
+                             subject: "Test Status Email",
+                             body: "Tests were failed",
+                             to: "Imaratahang@gmail.com"
                 }
             }
         }
@@ -34,10 +40,16 @@ pipeline{
             }
             post {
                 success {
-                    mail to: "Imaratahang@gmail.com",
-                    subject: "Security Scan Status Email", 
-                    body: "Security Scan was successful",
-                    attachLog: true
+                    emailext attachLog: true,
+                             subject: "Security Scan Status Email",
+                             body: "Security Scan was successful",
+                             to: "Imaratahang@gmail.com"
+                }
+                failure {
+                    emailext attachLog: true,
+                             subject: "Security Scan Status Email",
+                             body: "Security scan was failed",
+                             to: "Imaratahang@gmail.com"
                 }
             }
         }
