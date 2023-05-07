@@ -14,19 +14,29 @@ pipeline{
             }
             post {
                 success {
-                    emailext {
-                        to: 'Imaratahang@gmail.com',
-                        subject: 'Test Status Email', 
-                        body: 'Tests were successful',
-                        attachLog: true
+                    script {
+                        def email = 'Imaratahang@gmail.com',
+                        def subject = "Test Status Email", 
+                        def body = "Tests were successful",
+                        emailext {
+                            to: email,
+                            subject: subject, 
+                            body: body,
+                            attachLog: true
+                        }
                     }
                 }
                 failure {
-                    emailext {
-                        to: 'Imaratahang@gmail.com',
-                        subject: 'Test Status Email', 
-                        body: 'Tests were failed',
-                        attachLog: true
+                    script {
+                        def email = 'Imaratahang@gmail.com',
+                        def subject = "Test Status Email", 
+                        def body = "Tests were failed",
+                        emailext {
+                            to: email,
+                            subject: subject, 
+                            body: body,
+                            attachLog: true
+                        }
                     }
                 }
             }
