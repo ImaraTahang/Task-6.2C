@@ -15,29 +15,16 @@ pipeline{
             post {
                 success {
                     script {
-                        def Subject = "Test Status Email"
-                        def Body = "Tests were successful"
-                        printIn "email sent to: ${Email}"
-                        emailext {
-                            to: 'Imaratahang@gmail.com',
-                            subject: Subject, 
-                            body: Body,
-                            attachLog: true
-                        }
+                        to: 'Imaratahang@gmail.com',
+                        subject: 'Test Status Email', 
+                        body: 'Tests were successful'
                     }
                 }
                 failure {
                     script {
-                        def Email = 'Imaratahang@gmail.com'
-                        def Subject = "Test Status Email"
-                        def Body = "Tests were failed"
-                        printIn "email sent to: ${Email}"
-                        emailext {
-                            to: Email,
-                            subject: Subject, 
-                            body: Body,
-                            attachLog: true
-                        }
+                        to: 'Imaratahang@gmail.com',
+                        subject: 'Test Status Email', 
+                        body: 'Tests were failed'
                     }
                 }
             }
@@ -55,19 +42,17 @@ pipeline{
             }
             post {
                 success {
-                    emailext {
+                    script {
                         to: 'Imaratahang@gmail.com',
                         subject: 'Security Scan Status Email', 
-                        body: 'Security Scan was successful',
-                        attachLog: true
+                        body: 'Security scan was successful'
                     }
                 }
                 failure {
-                    emailext { 
+                    script {
                         to: 'Imaratahang@gmail.com',
                         subject: 'Security Scan Status Email', 
-                        body: 'Security scan was failed',
-                        attachLog: true
+                        body: 'Security scan was failed'
                     }
                 }
             }
