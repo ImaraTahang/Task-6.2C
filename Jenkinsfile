@@ -14,19 +14,15 @@ pipeline{
             }
             post {
                 success {
-                    script {
-                        to: 'Imaratahang@gmail.com',
-                        subject: 'Test Status Email', 
-                        body: 'Tests were successful'
-                    }
+                    to: 'Imaratahang@gmail.com',
+                    subject: 'Test Status Email', 
+                    body: 'Tests were successful'
                 }
                 failure {
-                    script {
-                        to: 'Imaratahang@gmail.com',
-                        subject: 'Test Status Email', 
-                        body: 'Tests were failed'
-                    }
-                }
+                    to: 'Imaratahang@gmail.com',
+                    subject: 'Test Status Email', 
+                    body: 'Tests were failed'
+                }            
             }
         }
         stage('Code Analysis'){
@@ -42,18 +38,14 @@ pipeline{
             }
             post {
                 success {
-                    script {
-                        to: 'Imaratahang@gmail.com',
-                        subject: 'Security Scan Status Email', 
-                        body: 'Security scan was successful'
-                    }
+                    to: 'Imaratahang@gmail.com',
+                    subject: 'Security Scan Status Email', 
+                    body: 'Security scan was successful'
                 }
                 failure {
-                    script {
-                        to: 'Imaratahang@gmail.com',
-                        subject: 'Security Scan Status Email', 
-                        body: 'Security scan was failed'
-                    }
+                    to: 'Imaratahang@gmail.com',
+                    subject: 'Security Scan Status Email', 
+                    body: 'Security scan was failed'
                 }
             }
         }
